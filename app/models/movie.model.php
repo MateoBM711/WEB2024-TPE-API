@@ -7,17 +7,21 @@ class MovieModel
 
     public function __construct()
     {
-        $this->db = new PDO("mysql:host=".MYSQL_HOST.
-                            ";dbname=".MYSQL_DB.
-                            ";charset=utf8",
-                            MYSQL_USER,MYSQL_PASS);
+        $this->db = new PDO(
+            "mysql:host=" . MYSQL_HOST .
+                ";dbname=" . MYSQL_DB .
+                ";charset=utf8",
+            MYSQL_USER,
+            MYSQL_PASS
+        );
         $this->_deploy();
     }
 
-    private function _deploy(){
+    private function _deploy()
+    {
         $query = $this->db->query('SHOW TABLES');
         $tables = $query->fetchAll();
-        if(count($tables) == 0){
+        if (count($tables) == 0) {
             $sql = <<<END
 
                 CREATE TABLE `genre` (
@@ -159,15 +163,18 @@ class MovieModel
         $movies = $query->fetchAll(PDO::FETCH_OBJ);
         return $movies;
     }
-    public function insertMovie($title, $director, $genre, $descrip, $img){
+    public function insertMovie($title, $director, $genre, $descrip, $img)
+    {
         $query = $this->db->prepare('INSERT INTO movie(title, director, id_genre, descrip, img) VALUES (?, ?, ?, ?, ?)');
         $query->execute([$title, $director, $genre, $descrip, $img]);
     }
-    public function removeMovie($id){
+    public function removeMovie($id)
+    {
         $query = $this->db->prepare('DELETE FROM movie WHERE id = ?');
         $query->execute([$id]);
     }
-    public function updateMovie($title, $director, $genre, $description, $img, $id){
+    public function updateMovie($title, $director, $genre, $description, $img, $id)
+    {
         $query = $this->db->prepare('UPDATE movie SET title = ?, director = ?, id_genre = ?, descrip = ?, img = ? WHERE id = ?');
         $query->execute([$title, $director, $genre, $description, $img, $id]);
     }

@@ -23,12 +23,11 @@ require_once './app/libs/router.php';
 require_once './app/controllers/api.movie.controller.php';
 
 $router = new Router();
-/*       addRoute (endpoint,   verb,   controller,           method) */
+//       addRoute (endpoint,   verb,   controller,           method) */
 $router->addRoute('peliculas', 'GET', 'ApiMovieController', 'getAll');
-/*$router->addRoute('peliculas/:id', 'GET', 'ApiMovieController', 'get');
+$router->addRoute('peliculas/:ID', 'GET', 'ApiMovieController', 'get');
+$router->addRoute('peliculas/:ID', 'DELETE', 'ApiMovieController', 'delete');
 $router->addRoute('peliculas', 'POST', 'ApiMovieController', 'add');
-$router->addRoute('peliculas/:id', 'DELETE', 'ApiMovieController', 'delete');
-$router->addRoute('peliculas/:id', 'PUT', 'ApiMovieController', 'update');
-*/
+//$router->addRoute('peliculas/:ID', 'PUT', 'ApiMovieController', 'update');
 
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

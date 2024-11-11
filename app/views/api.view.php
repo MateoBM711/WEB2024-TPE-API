@@ -1,13 +1,16 @@
 <?php
 
-class JSONView {
-    public function response($body, $status = 200){
+class APIView
+{
+    public function response($body, $status)
+    {
         header("Content-Type: application/json");
         $statusText = $this->_requestStatus($status);
         header("HTTP/1.1 $status $statusText");
         echo json_encode($body);
     }
-    private function _requestStatus($code) {
+    private function _requestStatus($code)
+    {
         $status = array(
             200 => "OK",
             201 => "Created",

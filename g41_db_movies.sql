@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2024 a las 15:59:55
+-- Tiempo de generación: 11-11-2024 a las 14:19:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -78,6 +78,18 @@ INSERT INTO `movie` (`id`, `title`, `director`, `id_genre`, `descrip`, `img`) VA
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `review`
+--
+
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL,
+  `id_movie` int(11) NOT NULL,
+  `comment` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `user`
 --
 
@@ -112,6 +124,13 @@ ALTER TABLE `movie`
   ADD KEY `id_genre` (`id_genre`);
 
 --
+-- Indices de la tabla `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_movie` (`id_movie`);
+
+--
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
@@ -135,10 +154,32 @@ ALTER TABLE `movie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT de la tabla `review`
+--
+ALTER TABLE `review`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `movie`
+--
+ALTER TABLE `movie`
+  ADD CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id`);
+
+--
+-- Filtros para la tabla `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `id_movie` FOREIGN KEY (`id_movie`) REFERENCES `movie` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
