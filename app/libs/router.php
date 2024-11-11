@@ -32,16 +32,14 @@ class Route {
                 return false;
             } //es un parametro
             else
-            $this->params[''.substr($part,1)] = $partsURL[$key];
+            $this->params[':'.substr($part,1)] = $partsURL[$key];
         }
         return true;
     }
-    public function run($request, $response){
-        $controller = $this->controller;  
+    public function run() {
+        $controller = new $this->controller();
         $method = $this->method;
-        $request->params = (object) $this->params;
-       
-        (new $controller())->$method($request, $response);
+        $controller->$method($this->params);
     }
 }
 
