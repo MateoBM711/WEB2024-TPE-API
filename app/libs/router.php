@@ -36,11 +36,11 @@ class Route {
         }
         return true;
     }
-    public function run() {
-        $controller = new $this->controller();
-        $method = $this->method;
-        $controller->$method($this->params);
-    }
+public function run() {
+    $controller = new $this->controller();
+    $method = $this->method;
+    $controller->$method($this->params);
+}
 }
 
 class Router {
