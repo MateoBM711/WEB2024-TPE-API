@@ -16,16 +16,17 @@ class ApiMovieController
         $this->view = new APIView;
         $this->data = file_get_contents("php://input");
     }
-    function getData(){
+    function getData()
+    {
         return json_decode($this->data);
     }
     public function getAll($params = null)
     {
         $parametros = [];
-        if(isset($_GET['sort'])){
+        if (isset($_GET['sort'])) {
             $parametros['sort'] = $_GET['sort'];
         }
-        if(isset($_GET['order'])){
+        if (isset($_GET['order'])) {
             $parametros['order'] = $_GET['order'];
         }
         $paginaActual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -46,19 +47,5 @@ class ApiMovieController
         } else {
             $this->view->response("La pelicula con el id=" . $idMovie . " no existe", 404);
         }
-    }
-    public function delete($params = null)
-    {
-        $idMovie = $params[':ID'];
-        $movie = $this->model->getMovieById($idMovie);
-        if($movie){
-        $this->model->removeMovie($idMovie);
-        $this->view->response("La pelicula con el id=".$idMovie." se elimino con exito", 200);
-        }else{
-            $this->view->response("La pelicula con el id=".$idMovie."no existe", 404);
-        }
-    }
-    public function add($params = null){
-        $body = $this->getData();
     }
 }

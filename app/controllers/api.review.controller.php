@@ -18,14 +18,6 @@ class ApiReviewController{
     function getData(){
         return json_decode($this->data);
     }
-    public function add($params = null){
-        $idMovie = $params[':ID'];
-        $body = $this->getData();
-        $comment = $body->comment;
-        $this->model->insertReview($idMovie, $comment);
-        $reviews = $this->model->getReviews($params);
-        return $this->view->response($reviews, 200);
-    }
     public function getAll($params = null){
         $parametros = [];
         if(isset($_GET['sort'])){
@@ -41,6 +33,23 @@ class ApiReviewController{
         $parametros['offset'] = $offset;
         $reviews = $this->model->getReviews($parametros);
         $this->view->response($reviews, 200);
+    }
+    function get($params = null){
+        $idReview = $params[':ID'];
+        $review = $this->model->getReviewById($idReview);
+        if($review){
+            $this->view->response($review, 200);
+        } else {
+            $this->view->response("La review con el id=".$idReview." no existe",404);
+        }
+    }
+    public function add($params = null){
+        $body = $this->getData();
+        $idMovie = $body->id_movie;
+        $comment = $body->comment;
+        $this->model->insertReview($idMovie, $comment);
+        $reviews = $this->model->getReviews($params);
+        return $this->view->response($reviews, 200);
     }
     public function delete($params = null){
         $idReview = $params[':ID'];

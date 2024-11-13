@@ -143,20 +143,20 @@ class MovieModel
     public function getMovies($parametros)
     {
         $sql = 'SELECT m.*, g.genre FROM movie m JOIN genre g ON m.id_genre = g.id';
-        if(isset($parametros['order'])){
-            if($parametros['order'] == 'genre'){
-                $sql.= ' ORDER BY g.'.$parametros['order'];
-            } else{
-                $sql.= ' ORDER BY m.'.$parametros['order'];
+        if (isset($parametros['order'])) {
+            if ($parametros['order'] == 'genre') {
+                $sql .= ' ORDER BY g.' . $parametros['order'];
+            } else {
+                $sql .= ' ORDER BY m.' . $parametros['order'];
             }
-            if(isset($parametros['sort'])){
-                $sql .=' '.$parametros['sort'];
+            if (isset($parametros['sort'])) {
+                $sql .= ' ' . $parametros['sort'];
             }
         }
         $limit = isset($parametros['limit']) ? (int)$parametros['limit'] : 4;
         $offset = isset($parametros['offset']) ? (int)$parametros['offset'] : 0;
 
-        $sql .= ' LIMIT '.$limit.' OFFSET '.$offset;
+        $sql .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
         $query = $this->db->prepare($sql);
         $query->execute();
 

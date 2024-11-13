@@ -27,9 +27,10 @@ $router = new Router();
 //       addRoute (endpoint,   verb,   controller,           method) */
 $router->addRoute('peliculas', 'GET', 'ApiMovieController', 'getAll');
 $router->addRoute('peliculas/:ID', 'GET', 'ApiMovieController', 'get');
-$router->addRoute('peliculas/:ID', 'DELETE', 'ApiMovieController', 'delete');
-$router->addRoute('peliculas/:ID', 'POST', 'ApiReviewController', 'add');
 $router->addRoute('reviews', 'GET', 'ApiReviewController', 'getAll');
+$router->addRoute('reviews/:ID', 'GET', 'ApiReviewController', 'get');
+$router->addRoute('reviews', 'POST', 'ApiReviewController', 'add');
 $router->addRoute('reviews/:ID', 'PUT', 'ApiReviewController', 'update');
+$router->addRoute('reviews/:ID', 'DELETE', 'ApiReviewController', 'delete');
 
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);
