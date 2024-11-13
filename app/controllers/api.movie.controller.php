@@ -21,7 +21,19 @@ class ApiMovieController
     }
     public function getAll($params = null)
     {
-        $movies = $this->model->getMovies();
+        $parametros = [];
+        if(isset($_GET['sort'])){
+            $parametros['sort'] = $_GET['sort'];
+        }
+        if(isset($_GET['order'])){
+            $parametros['order'] = $_GET['order'];
+        }
+        $paginaActual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $itemsPorPagina = isset($_GET['limit']) ? (int)$_GET['limit'] : 4;
+        $offset = ($paginaActual - 1) * $itemsPorPagina;
+        $parametros['limit'] = $itemsPorPagina;
+        $parametros['offset'] = $offset;
+        $movies = $this->model->getMovies($parametros);
         $this->view->response($movies, 200);
     }
     public function get($params = null)

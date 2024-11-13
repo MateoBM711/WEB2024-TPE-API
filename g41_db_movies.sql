@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2024 a las 14:19:45
+-- Tiempo de generación: 12-11-2024 a las 16:11:20
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -72,8 +72,7 @@ INSERT INTO `movie` (`id`, `title`, `director`, `id_genre`, `descrip`, `img`) VA
 (16, 'El secreto de sus ojos', 'Juan José Campanella', 8, 'Benjamín Espósito es un oficial de un Juzgado de Instrucción de Buenos Aires que acaba de jubilarse. Su sueño es escribir una novela y, para ello, intentará dar solución a un caso abierto desde hace varias décadas, del cual fue testigo y protagonista. Reviviendo el caso, vuelve también a su memoria el recuerdo de una mujer, a quien ha amado en silencio durante todos esos años.', 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTiuZCK6QazCgK87TNCP4pt-sWS4pV90Ga3TqObxXaYLqxAvuQI'),
 (17, 'Terminator', 'James Cameron', 5, 'En el año 2029 las máquinas dominan el mundo. Los rebeldes que luchan contra ellas tienen como líder a John Connor, un hombre que nació en los años ochenta. Para eliminarlo y así acabar con la rebelión, las máquinas envían al pasado el robot Terminator con la misión de matar a Sarah Connor, la madre de John, e impedir así su nacimiento. Sin embargo, un hombre del futuro intentará protegerla.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7btnbUsG8w5WfXa5p7AzHgX8fM02rQzA9QA&s'),
 (18, 'Piratas del Caribe: la maldicion del Perla Negra ', 'Gore Verbinski', 6, 'El capitán Barbossa le roba el barco al pirata Jack Sparrow y secuestra a Elizabeth, amiga de Will Turner. Barbossa y su tripulación son víctimas de un conjuro que los condena a vivir eternamente y a transformarse cada noche en esqueletos vivientes.', 'https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/CDFF38C4E0D5966152BA4087F85154710B102E4DD7A8ABA5A80EC815A7F581CE/scale?width=1200&aspectRatio=1.78&format=webp'),
-(19, 'La Momia', 'Stephen Sommers', 6, 'Rick O\'Connell y un compañero descubren las ruinas de Hamunaptra. Después vuelven al mismo lugar con una egiptóloga y su hermano. Allí coinciden con un grupo de americanos que provocan la resurrección de la momia de un diabólico sacerdote egipcio.', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQjbeyUFhC4fVpbGTnirwdLHjjjx8gMcfjymFCQUz_GFd1oTBVN'),
-(20, 'Smile', 'Parker Finn', 9, 'Después de presenciar un incidente extraño y traumático que involucra a un paciente, la Dra. Rose Cotter comienza a experimentar sucesos aterradores que no puede explicar. A medida que un terror abrumador comienza a apoderarse de su vida, Rose debe enfrentar su inquietante pasado para poder sobrevivir y escapar de su nueva y horrible realidad.', 'https://pics.filmaffinity.com/Smile-692937346-large.jpg');
+(19, 'La Momia', 'Stephen Sommers', 6, 'Rick O\'Connell y un compañero descubren las ruinas de Hamunaptra. Después vuelven al mismo lugar con una egiptóloga y su hermano. Allí coinciden con un grupo de americanos que provocan la resurrección de la momia de un diabólico sacerdote egipcio.', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQjbeyUFhC4fVpbGTnirwdLHjjjx8gMcfjymFCQUz_GFd1oTBVN');
 
 -- --------------------------------------------------------
 
@@ -86,6 +85,38 @@ CREATE TABLE `review` (
   `id_movie` int(11) NOT NULL,
   `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `review`
+--
+
+INSERT INTO `review` (`id`, `id_movie`, `comment`) VALUES
+(1, 8, 'La mejor pelicula que vi en mi vida'),
+(2, 8, 'Un clasico de Tarantino, cada tanto la vuelvo a ver'),
+(3, 8, 'Un clasico de Tarantino'),
+(4, 15, 'Nunca me rei tanto en mi vida'),
+(5, 15, 'Otra pelicula mala de Zac Efron'),
+(6, 15, 'Excelente reflejo de lo que es la vida descontrolada de los adolescentes americanos'),
+(7, 16, 'Clasico total del cine argentino'),
+(8, 16, 'Merecido el Oscar que tiene, brillante'),
+(9, 16, 'Darin es el mejor actor de la historia argentina'),
+(10, 9, 'Malisima'),
+(11, 9, 'Una pelicula que envejecio muy bien'),
+(12, 9, 'yo creo que le gano al T-rex en una pelea'),
+(13, 9, 'El dinosaurio grita como mi tia'),
+(14, 8, 'Esta pelicula me da ganas de salir a pelearme con alguien'),
+(17, 18, 'La mejor de toda la saga'),
+(18, 18, 'Actuacion memorable de Johnny Depp'),
+(19, 18, 'Unas ganas de ser pirata y robarte el corazon'),
+(20, 18, 'es entretenida pero nada de otro mundo'),
+(23, 19, 'Que onda los FX'),
+(24, 19, 'El pelado es epico'),
+(25, 10, 'Excelente pelicula de accion'),
+(26, 10, 'Paul Walker:('),
+(27, 17, 'Clasico de clasicos'),
+(28, 17, 'Un poco me asuste'),
+(31, 17, 'Siempre supe que las maquinas iban a ser la perdicion de la humanidad'),
+(32, 17, 'Chat gpt viene por nosotros');
 
 -- --------------------------------------------------------
 
@@ -157,7 +188,7 @@ ALTER TABLE `movie`
 -- AUTO_INCREMENT de la tabla `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `user`

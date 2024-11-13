@@ -23,11 +23,23 @@ class ApiReviewController{
         $body = $this->getData();
         $comment = $body->comment;
         $this->model->insertReview($idMovie, $comment);
-        $reviews = $this->model->getReviews();
+        $reviews = $this->model->getReviews($params);
         return $this->view->response($reviews, 200);
     }
     public function getAll($params = null){
-        $reviews = $this->model->getReviews();
+        $parametros = [];
+        if(isset($_GET['sort'])){
+            $parametros['sort'] = $_GET['sort'];
+        }
+        if(isset($_GET['order'])){
+            $parametros['order'] = $_GET['order'];
+        }
+        $paginaActual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $itemsPorPagina = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
+        $offset = ($paginaActual - 1) * $itemsPorPagina;
+        $parametros['limit'] = $itemsPorPagina;
+        $parametros['offset'] = $offset;
+        $reviews = $this->model->getReviews($parametros);
         $this->view->response($reviews, 200);
     }
     public function delete($params = null){

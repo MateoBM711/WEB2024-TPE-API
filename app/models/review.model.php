@@ -11,8 +11,19 @@ class ReviewModel{
         ";charset=utf8",
         MYSQL_USER,MYSQL_PASS);   
     }
-    public function getReviews(){
-        $query = $this->db->prepare('SELECT * FROM review');
+    public function getReviews($parametros){
+        $sql = 'SELECT * FROM review';
+        if(isset($parametros['order'])){
+            $sql.= ' ORDER BY '.$parametros['order'];
+            if(isset($parametros['sort'])){
+                $sql.= ' '.$parametros['sort'];
+            }
+        }
+        $limit = isset($parametros['limit']) ? (int)$parametros['limit'] : 10;
+        $offset = isset($parametros['offset']) ? (int)$parametros['offset'] : 0;
+
+        $sql .= ' LIMIT '.$limit.' OFFSET '.$offset;
+        $query = $this->db->prepare($sql);
         $query->execute();
         $reviews = $query->fetchAll(PDO::FETCH_OBJ);
         return $reviews;
